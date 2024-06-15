@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Head from "next/head";
-import Navbar from "@/app/ui/home/Navbar";
+import Navbar from "@/app/ui/common/Navbar";
 import ThemeModeProvider from "@/app/context/ThemeContext";
 import MuiThemeProvider from "@/app/ui/common/MuiThemeProvider";
 import "./globals.css";

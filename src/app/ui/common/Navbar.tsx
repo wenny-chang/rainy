@@ -10,13 +10,17 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import Stack from "@mui/material/Stack";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Image from "next/image";
-
-const pages = ["Rainfall information", "Pricing", "Blog"];
+import { useModeContext } from "@/app/context/ThemeContext";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import { pages } from "@/app/lib/constant";
+import Link from "next/link";
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const { isDarkMode, toggleDarkMode } = useModeContext();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -25,6 +29,8 @@ function Navbar() {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+
+  // const goTo = useCallback((route) => {}, []);
 
   return (
     <AppBar position="static">
@@ -37,7 +43,7 @@ function Navbar() {
             variant="h6"
             noWrap
             component="a"
-            href="#"
+            href="/"
             sx={{
               mx: 2,
               display: { xs: "none", md: "flex" },
@@ -81,9 +87,9 @@ function Navbar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
+                <Link key={page.route} href={page.route}>
+                  <Typography textAlign="center">{page.name}</Typography>
+                </Link>
               ))}
             </Menu>
           </Box>
@@ -110,14 +116,30 @@ function Navbar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
+              <Button key={page.route} sx={{ my: 2, display: "block" }}>
+                <Link
+                  href={page.route}
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                  }}
+                >
+                  <Typography textAlign="center">{page.name}</Typography>
+                </Link>
               </Button>
             ))}
+          </Box>
+          <Box>
+            <IconButton
+              size="large"
+              aria-label="switch mode"
+              aria-controls="toggle-mode"
+              aria-haspopup="true"
+              onClick={toggleDarkMode}
+              color="inherit"
+            >
+              {isDarkMode ? <LightModeIcon /> : <DarkModeIcon />}
+            </IconButton>
           </Box>
         </Toolbar>
       </Container>
