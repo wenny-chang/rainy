@@ -1,10 +1,15 @@
-'use client';
-import { createTheme } from '@mui/material/styles';
+"use client";
+import { createTheme } from "@mui/material/styles";
 
-const theme = createTheme({
+const darkMode = createTheme({
   palette: {
-    mode: 'dark',
+    mode: "dark",
+  },
+});
+const lightMode = createTheme({
+  palette: {
+    mode: "light",
   },
 });
 
-export default theme;
+export { darkMode, lightMode };
