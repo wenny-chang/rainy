@@ -13,9 +13,14 @@
     "@emotion/styled": "^11.11.5",
     "@mui/icons-material": "^5.15.20",
     "@mui/material": "^5.15.20",
+    "leaflet": "1.7.1",
+    "leaflet-simple-map-screenshoter": "^0.5.0",
+    "leaflet.idw": "^0.0.1",
+    "leaflet.markercluster": "^1.5.3",
     "next": "14.2.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-leaflet": "^4.2.1"
   },
   "devDependencies": {
     "@types/node": "^20",

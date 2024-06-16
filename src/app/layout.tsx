@@ -4,7 +4,9 @@ import Head from "next/head";
 import Navbar from "@/app/ui/common/Navbar";
 import ThemeModeProvider from "@/app/context/ThemeContext";
 import MuiThemeProvider from "@/app/ui/common/MuiThemeProvider";
+import Container from "@mui/material/Container";
 import "./globals.css";
+import { ReactElement } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,7 +15,7 @@ export const metadata: Metadata = {
   description: "You can check weather here",
 };
 
-export default function RootLayout({ children }: any) {
+export default function RootLayout({ children }: { children: ReactElement }) {
   return (
     <html lang="en">
       <Head>
@@ -23,7 +25,9 @@ export default function RootLayout({ children }: any) {
         <MuiThemeProvider>
           <body className={inter.className}>
             <Navbar />
-            {children}
+            <Container maxWidth="xl" sx={{ padding: "24px" }}>
+              {children}
+            </Container>
           </body>
         </MuiThemeProvider>
       </ThemeModeProvider>
